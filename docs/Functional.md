@@ -40,8 +40,6 @@ The users' privacy should be protected by login system
 
 ## ERD
 
-<p align='center'>
-<img src='ERD.png' title='images' style='max-width:600px'></img>
-</p>
+![](https://raw.githubusercontent.com/SDM-2021-16-SpongeBob/simple-todo-list/main/docs/images/ERD.png)
 
 ## Screen plans
