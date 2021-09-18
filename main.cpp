@@ -1,12 +1,11 @@
 #include <iostream>
 #include <cstring>
 #include <vector>
+#include <fstream>
 
 using namespace std;
 
-bool add_on = false;    //detect whether users input "add"
-bool del_on = false;    //detect whether users input "del"
-bool exit_on = false;   //detect whether users input "exit"
+bool IsLogin = false; 
 vector<string> task;    //vector stored unfinished tasks
 vector<string> fitask;  //vector stored finished tasks
 int tasks_undone = 0;   
@@ -20,39 +19,79 @@ static void read(){}
 
 static void help(){}
 
-//static string get_date(){}
+static void reg(){               
+    string registerName, registerPassword;
+    ofstream g("users.txt"); 
+    cout <<endl <<"New Username: ";
+    cin >> registerName;
+    cout <<"New Password: ";
+    cin >> registerPassword;
+    g<<registerName; 
+    g<<'\n'; 
+    g<<registerPassword;
+    g.close(); 
+}
 
-static void add(){
-    if (add_on = true)
+static void login(){
+    string name, password, inname, inpassword;
+    ifstream f("users.txt");
+    getline(f, name);
+    getline(f, password);
+    if (name.empty())
     {
-        string temp_task;
-        cout << "Add task: ";
-        cin >> temp_task;
-        task.push_back(temp_task);
-        tasks_undone++;
-        add_on = false;
-        cout << endl;
+        cout << "No users registered!\n";
+    }
+    else
+    {
+        while(1)
+        {
+            cout << endl << "User Nmae: ";
+            cin >> inname;
+            cout << endl << "Password: ";
+            cin >> inpassword;
+            if (inname == name && inpassword == password)
+            {
+                IsLogin = true;
+                system("clear");
+                cout << "Welcome, " << name << "!\n";
+                break;
+            }
+            else if (inname == "exit")
+                break;
+            else
+                cout << "Wrong user name or password!\n";
+        }
     }
 }
 
+static void users_auto_save(){}
+
+//static string get_date(){}
+
+static void add(){
+    string temp_task;
+    cout << "Add task: ";
+    cin >> temp_task;
+    task.push_back(temp_task);
+    tasks_undone++;
+    cout << endl;
+
+}
+
 static void del(){
-    if (del_on = true)
+    vector<string>::iterator n;
+    n = task.begin();
+    int temp;
+    cout << "Delete task( 1" << " to " << tasks_undone
+    << " )";  
+    cin >> temp;
+    for(int i=0; i < temp; i++)
     {
-        vector<string>::iterator n;
-        n = task.begin();
-        int temp;
-        cout << "Delete task( 1" << " to " << tasks_undone
-        << " )";  
-        cin >> temp;
-        for(int i=0; i < temp; i++)
-            {
-                n++;
-            }
-        task.erase(n-1);
-        tasks_undone--;
-        del_on = false;
-        cout << endl;
-    }
+            n++;
+        }
+    task.erase(n-1);
+    tasks_undone--;
+    cout << endl;
 }
 
 static void display(){
@@ -70,11 +109,30 @@ static void display(){
 
 static void input(string temp){
     if(temp == "add")
-        add();
+        if(IsLogin)
+            add();
+        else
+            cout << "You haven't login!\n";
     if(temp == "del")
-        del();
+        if(IsLogin)
+            del();
+        else
+            cout << "You haven't login!\n";
     if(temp == "display")
-        display();
+        if(IsLogin)
+            add();
+        else
+            cout << "You haven't login!\n";
+    if(temp == "reg")
+        if(IsLogin)
+            cout << "You have logged in!\n";
+        else
+            reg();
+    if(temp == "login")
+        if(IsLogin)
+            cout << "You have logged in!\n";
+        else
+            login();
     if(temp == "clr")
         system("clear");
 }
