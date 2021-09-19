@@ -33,9 +33,19 @@ New task: User come up with a new task -> User log the tasks in the programe -> 
 The users' privacy should be protected by login system
 
 ## Requirement list
-
+Gathering of software requirements and analysis of the project.
+Product design.
+Implementation/Coding.
+Testing.
+Deployment.
+Maintenance.
 ## Dictionary
-
+Name of the data item
+Aliases
+Description/purpose
+Related data items
+Range of values
+Data structure definition/Forms
 ## Use case
  It outlines, from a user's point of view, a system's behavior as it responds to a request.
  
