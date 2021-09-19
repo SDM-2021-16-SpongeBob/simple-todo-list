@@ -37,7 +37,8 @@ The users' privacy should be protected by login system
 ## Dictionary
 
 ## Use case
-
+ It outlines, from a user's point of view, a system's behavior as it responds to a request.
+ 
 ## ERD
 
 ![](https://raw.githubusercontent.com/SDM-2021-16-SpongeBob/simple-todo-list/main/docs/images/ERD.png)
