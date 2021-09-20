@@ -22,11 +22,15 @@ The software should have the following functions:
 
 ## Current processes (model)
 
+```txt
 New task: User come up with a new task -> User take out the pen and notebook -> user write it down
+```
 
 ## Required processes (model)
 
+```txt
 New task: User come up with a new task -> User log the tasks in the programe -> Save the tasks into a file
+```
 
 ## Law, rules, standards
 
@@ -34,18 +38,18 @@ The users' privacy should be protected by login system
 
 ## Requirement list
 
-Gathering of software requirements and analysis of the project.
-Product design.
-Implementation/Coding.
-Testing.
-Deployment.
-Maintenance.
+- Gathering of software requirements and analysis of the project.
+- Product design.
+- Implementation/Coding.
+- Testing.
+- Deployment.
+- Maintenance.
 
 ## Dictionary
 
-Name of the data item
-Aliases
-Description/purpose
-Related data items
-Range of values
-Data structure definition/Forms
+- Name of the data item
+- Aliases
+- Description/purpose
+- Related data items
+- Range of values
+- Data structure definition/Forms
