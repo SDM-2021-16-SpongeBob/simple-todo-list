@@ -12,17 +12,40 @@ The software should have the following functions:
 
 - Add To-Do task (MVP)
 - Delete To-Do task (MVP)
+- Finish To-Do task (MVP)
 - Show the existing To-Do task (MVP)
 - Provide help documentation (MVP)
+- Users register, login, log off
+- Save the tasks in different txt files
 - Countdown
 - When the countdown is over, remind the user
 
 ## Current processes (model)
 
+New task: User come up with a new task -> User take out the pen and notebook -> user write it down
+
 ## Required processes (model)
+
+New task: User come up with a new task -> User log the tasks in the programe -> Save the tasks into a file
 
 ## Law, rules, standards
 
+The users' privacy should be protected by login system
+
 ## Requirement list
 
+Gathering of software requirements and analysis of the project.
+Product design.
+Implementation/Coding.
+Testing.
+Deployment.
+Maintenance.
+
 ## Dictionary
+
+Name of the data item
+Aliases
+Description/purpose
+Related data items
+Range of values
+Data structure definition/Forms
