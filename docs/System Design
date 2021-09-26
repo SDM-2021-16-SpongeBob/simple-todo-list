@@ -57,6 +57,28 @@
 
 
 #ARCHITECTURE
+I'm going to base my game design on these requirements:
+
+  .I want to develop a tic-tac-toe game accessible through any web browser.
+  .I want users to be able to play tic-tac-toe against a CPU player (an algorithm that plays automatically).
+    As a user…
+     .I can access the tic-tac-toe game landing page by typing a URL in my browser.
+     .I can select the difficulty level of the game to start from the landing page, and start the game.
+     .When the game starts, the game page is shown.
+     .The game page lets me make a move whenever it is my turn.
+     .The game page shows me my opponent's moves in real-time.
+     .I can resume any of my games that are not yet over.
+  .A game is over when either i) one player achieves three symbols in a row, or ii) all cells on the board contain a symbol.
+  .Once the game is over, the results are shown to the user. They can decide to start a new game, or leave the game screen.
+   With these requirements in mind, let's start thinking about how to implement the application.
+
+  .We can think of a game as a Process Instance. In particular, each tic-tac-toe game between a user and the computer is an 
+instance of the GameSinglePlayer Process. The Process implements the logic of the game.
+
+  .Whenever a user creates a new game, a new Process Instance is created, and that user added as a player.
+
+  .The landing page, or the Game Management Single Player Screen, is a standalone Screen listing all the running instances of
+the Game Process. From here, a user can continue their games, or start a new one.
 
 
 
