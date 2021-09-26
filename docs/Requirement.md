@@ -36,6 +36,10 @@ New task: User come up with a new task -> User take out the pen and notebook -> 
 New task: User come up with a new task -> User log the tasks in the programe -> Save the tasks into a file
 ```
 
+## Technology Stack Plans
+
+We plan to build a command line application using C++.
+
 ## Interactive Design
 
 ### Add a To-Do task
