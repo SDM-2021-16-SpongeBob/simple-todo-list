@@ -33,7 +33,7 @@ static void add(){
     cin >> temp_task;
     task.push_back(temp_task);
     tasks_undone++;
-    cout << "Task added.";
+    cout << "Task added." << endl;
 }
 
 static void del(){
@@ -50,7 +50,7 @@ static void del(){
         }
     task.erase(n-1);
     tasks_undone--;
-    cout << "Task deleted.";
+    cout << "Task deleted." << endl;
 }
 
 static void display(){
@@ -85,15 +85,32 @@ static void fin(){
     task.erase(n-1);
     tasks_undone--;
     tasks_done++;
-    cout << "Task finished.";
+    cout << "Task finished." << endl;
 }  
 
 static void get_date(){
     time_t t = time(0); 
     struct tm * timeStruct = localtime(&t);
+    string month, day;
+    int imon = timeStruct->tm_mon + 1;
+    if (imon < 10)
+    {
+        month = "0" + to_string(imon);
+    }
+    else 
+    {
+        month = to_string(imon);
+    }
+    int iday = timeStruct->tm_mday;
+    if (iday < 10)
+    {
+        day = "0" + to_string(iday);
+    }
+    else 
+    {
+        day = to_string(iday);
+    }
     string year = to_string(timeStruct->tm_year + 1900);
-    string month = to_string(timeStruct->tm_mon + 1);
-    string day = to_string(timeStruct->tm_mday);
     date = year + "-" + month + "-" + day;
 }
 
@@ -101,7 +118,8 @@ static void save(){
     clr();
     string temp = "1";
     get_date();
-    string file = date + ".txt";
+    string file = user_name + "\0" + date + ".txt";
+    string file_name = user_name + "\0" + date;
     ofstream g(file); 
     g << "Unfinished tasks\n"; 
     for(int i = 0; i < tasks_undone; i++)
@@ -120,13 +138,13 @@ static void save(){
     while(!temp.empty())
         {
             getline(save, temp);
-            if (temp == date)
+            if (temp == file_name)
             {
                 break;
             }
             else if (temp.empty())
             {
-                write << date << endl;
+                write << file_name << endl;
             }
         }
     write.close();
@@ -135,25 +153,40 @@ static void save(){
     vector <string>().swap(fitask);
     tasks_done = 0;
     tasks_undone = 0;
-    cout << "Tasks saved successfully.";
+    cout << "Tasks saved successfully." << endl;
 }
 
-static void read(){
+static int read(){
+    clr();
     if (tasks_done == 0 && tasks_undone == 0)
     {
+        bool fileExist = false;
+        get_date();
+        string file, file_name;
+        vector<string> file_1;
         string temp = "1";
         int i = 0;
         ifstream f_1("saves.txt");
-        getline(f_1, temp);
-        if(temp.empty())
+        while(!f_1.eof())
+        {
+            getline(f_1, temp);
+            file = temp.substr(0, temp.length() - 10);
+            if(file == user_name)
+            {
+                file_name = temp + ".txt";
+                file_1.push_back(file_name);
+                i++;
+                cout << i << ". " << temp << endl;
+                fileExist = true;
+            }
+        }
+        if(!fileExist)
         {
             cout << "No tasks saved!\n";
+            return 0;
         }
         else
         {
-            i++;
-            cout << "List of saved tasks: \n";
-            cout << i << ". " << temp << endl;
             while(!temp.empty())
             {
                 getline(f_1, temp);
@@ -166,13 +199,8 @@ static void read(){
                 << " ): ";  
             cin >> i;
             f_1.close();
-            ifstream f_2("saves.txt");
-            for (int n = 0; n < i; n++)
-            {
-                getline(f_2, temp);
-            }
-            f_2.close();
-            string file = temp + ".txt";
+            file_name = file_1[i-1];
+            string file = file_name;
             ifstream read(file);
             if(read.is_open())
             {
@@ -199,14 +227,16 @@ static void read(){
             }
             else
             {
-                cout <<"Erro: Can't read the file!";
+                cout <<"Erro: Can't read the file!" << endl;
             }
             read.close();
+            return 1;
         }
     }
     else
     {
         cout << "You haven't saved the tasks!\n";
+        return 2;
     }
 }
 
@@ -253,7 +283,7 @@ static int reg(){
     return 1;
 }
 
-static void login(){
+static int login(){
     clr();
     string name, password, inname, inpassword, temp;
     ifstream f("users.txt");
@@ -282,29 +312,27 @@ static void login(){
                     if(temp == inpassword)
                     {
                         clr();
-                        cout << "Welcome " << inname << "!\n";
                         user_name = inname;
+                        cout << "Welcome " << user_name << "!\n";
                         IsLogin = true;
-                        break;
+                        read.close();
+                        return 0;
                     }
                     else
                     {
                         clr();
                         cout << "Wrong password!\n";
-                        break;
+                        read.close();
+                        return 0;
                     }
                 }
-                else
-                {
-                    clr();
-                    cout << "User not registered!\n";
-                    break;
-                }
             }
+            cout << "User not registered!\n";
             read.close();
-            break;
+            return 0;
         }
     }
+    return 0;
 }
 
 static void users_auto_save(){}
