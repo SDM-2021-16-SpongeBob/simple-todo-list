@@ -8,6 +8,7 @@ using namespace std;
 
 bool IsLogin = false; 
 bool ISReading = false;
+string user_name;
 vector<string> task;    //vector stored unfinished tasks
 vector<string> fitask;  //vector stored finished tasks
 int tasks_undone = 0;   //for counting how many tasks remained 
@@ -222,28 +223,43 @@ static void help(){
         << "'exit'          Exit the programe.\n";
 }
 
-static void reg(){               
+static int reg(){               
+    string temp = "1";
     clr();
     string registerName, registerPassword;
-    ofstream g("users.txt"); 
-    cout <<endl <<"New Username: ";
+    cout <<"New Username: ";
     cin >> registerName;
     cout <<"New Password: ";
     cin >> registerPassword;
-    g<<registerName; 
-    g<< endl; 
-    g<<registerPassword;
-    g.close(); 
+    ofstream write;
+    write.open("users.txt", ios::app);
+    ifstream read("users.txt");
+    while(!read.eof())
+        {
+            getline(read, temp);
+            if (temp == registerName)
+            {
+                cout << "User registered!\n";
+                write.close();
+                read.close();
+                return 0;
+            }
+        }
+    write << registerName << endl << registerPassword << endl;
+    write.close();
+    read.close();
     clr();
     cout << "Registered successfully.\n";
+    return 1;
 }
 
 static void login(){
     clr();
-    string name, password, inname, inpassword;
+    string name, password, inname, inpassword, temp;
     ifstream f("users.txt");
     getline(f, name);
     getline(f, password);
+    f.close();
     if (name.empty())
     {
         cout << "No users registered!\n";
@@ -252,21 +268,41 @@ static void login(){
     {
         while(1)
         {
-            cout << endl << "User Nmae: ";
+            ifstream read("users.txt");
+            cout << "User Nmae: ";
             cin >> inname;
             cout << endl << "Password: ";
             cin >> inpassword;
-            if (inname == name && inpassword == password)
+            while(!read.eof())
             {
-                IsLogin = true;
-                system("clear");
-                cout << "Welcome, " << name << "!\n";
-                break;
+                getline(read, temp);
+                if(temp == inname)
+                {
+                    getline(read, temp);
+                    if(temp == inpassword)
+                    {
+                        clr();
+                        cout << "Welcome " << inname << "!\n";
+                        user_name = inname;
+                        IsLogin = true;
+                        break;
+                    }
+                    else
+                    {
+                        clr();
+                        cout << "Wrong password!\n";
+                        break;
+                    }
+                }
+                else
+                {
+                    clr();
+                    cout << "User not registered!\n";
+                    break;
+                }
             }
-            else if (inname == "exit")
-                break;
-            else
-                cout << "Wrong user name or password!\n";
+            read.close();
+            break;
         }
     }
 }
