@@ -36,6 +36,34 @@ New task: User come up with a new task -> User take out the pen and notebook -> 
 New task: User come up with a new task -> User log the tasks in the programe -> Save the tasks into a file
 ```
 
+## Interactive Design
+
+### Add a To-Do task
+
+```shell
+stdl add <todo message>
+```
+
+It will return a `id` for this `<todo message>`.
+
+### List To-Do tasks
+
+```shell
+stdl list
+```
+
+### Mark a To-Do task as done
+
+```shell
+stdl done <todo id>
+```
+
+### Delete a To-Do task
+
+```shell
+stdl del <todo id>
+```
+
 ## Law, rules, standards
 
 The users' privacy should be protected by login system
