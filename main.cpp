@@ -14,7 +14,60 @@ int tasks_undone = 0;   //for counting how many tasks remained
 int tasks_done = 0;     //for counting how many tasks done
 string date;
 
+static void clr(){
+
+    #ifdef linux
+    system("clear");
+    #endif
+    
+    #ifdef _WIN32
+    system("cls");
+    #endif
+}
+
+static void add(){
+    clr();
+    string temp_task;
+    cout << "Add task: ";
+    cin >> temp_task;
+    task.push_back(temp_task);
+    tasks_undone++;
+    cout << "Task added.";
+}
+
+static void del(){
+    clr();
+    vector<string>::iterator n;
+    n = task.begin();
+    int temp;
+    cout << "Delete task( 1" << " to " << tasks_undone
+    << " ): ";  
+    cin >> temp;
+    for(int i=0; i < temp; i++)
+    {
+            n++;
+        }
+    task.erase(n-1);
+    tasks_undone--;
+    cout << "Task deleted.";
+}
+
+static void display(){
+    clr();
+    cout << "Unfinished tasks: \n";
+    for (int i = 0; i < tasks_undone; i++)
+        {
+            cout << i+1 << ". " << task[i] << endl << endl;
+        }
+    cout << "Finished tasks: \n";    
+    for (int i = 0; i < tasks_done; i++)
+        {
+            cout << i+1 << ". " << fitask[i] << endl << endl;
+        }
+}
+
 static void fin(){
+    clr();
     vector<string>::iterator n;
     n = task.begin();
     int a = 0;
@@ -31,7 +84,7 @@ static void fin(){
     task.erase(n-1);
     tasks_undone--;
     tasks_done++;
-    cout << endl;
+    cout << "Task finished.";
 }  
 
 static void get_date(){
@@ -40,30 +93,137 @@ static void get_date(){
     string year = to_string(timeStruct->tm_year + 1900);
     string month = to_string(timeStruct->tm_mon + 1);
     string day = to_string(timeStruct->tm_mday);
-    date = year + "-" + month + "-" + day+".txt";
+    date = year + "-" + month + "-" + day;
 }
 
 static void save(){
+    clr();
+    string temp = "1";
     get_date();
-    ofstream g(date); 
-    g << "Uninished tasks: \n"; 
+    string file = date + ".txt";
+    ofstream g(file); 
+    g << "Unfinished tasks\n"; 
     for(int i = 0; i < tasks_undone; i++)
         {
-            g << task[i] <<endl;
+            g << task[i] << endl;
         }
-    g << "Finished tasks: \n"; 
+    g << "Finished tasks\n"; 
     for(int i = 0; i < tasks_done; i++)
         {
-            g << fitask[i] <<endl;
+            g << fitask[i] << endl;
         }
     g.close(); 
+    ofstream write;
+    write.open("saves.txt", ios::app);
+    ifstream save("saves.txt");
+    while(!temp.empty())
+        {
+            getline(save, temp);
+            if (temp == date)
+            {
+                break;
+            }
+            else if (temp.empty())
+            {
+                write << date << endl;
+            }
+        }
+    write.close();
+    save.close();
+    vector <string>().swap(task);
+    vector <string>().swap(fitask);
+    tasks_done = 0;
+    tasks_undone = 0;
+    cout << "Tasks saved successfully.";
 }
 
-static void read(){}
+static void read(){
+    if (tasks_done == 0 && tasks_undone == 0)
+    {
+        string temp = "1";
+        int i = 0;
+        ifstream f_1("saves.txt");
+        getline(f_1, temp);
+        if(temp.empty())
+        {
+            cout << "No tasks saved!\n";
+        }
+        else
+        {
+            i++;
+            cout << "List of saved tasks: \n";
+            cout << i << ". " << temp << endl;
+            while(!temp.empty())
+            {
+                getline(f_1, temp);
+                if(temp.empty())
+                    break;
+                i++;
+                cout << i << ". " << temp << endl;
+            }
+            cout << "Read( 1" << " to " << i
+                << " ): ";  
+            cin >> i;
+            f_1.close();
+            ifstream f_2("saves.txt");
+            for (int n = 0; n < i; n++)
+            {
+                getline(f_2, temp);
+            }
+            f_2.close();
+            string file = temp + ".txt";
+            ifstream read(file);
+            if(read.is_open())
+            {
+                cout << "Successfully readed " <<file << endl;
+                getline(read, temp);
+                while(!read.eof())
+                {
+                    getline(read, temp);
+                    if(temp == "Finished tasks")
+                    {
+                        while(!read.eof())
+                        {
+                            getline(read, temp);
+                            if(read.eof())
+                                break;
+                            fitask.push_back(temp);
+                            tasks_done++;
+                        }
+                        break;
+                    }
+                    task.push_back(temp);
+                    tasks_undone++;
+                }
+            }
+            else
+            {
+                cout <<"Erro: Can't read the file!";
+            }
+            read.close();
+        }
+    }
+    else
+    {
+        cout << "You haven't saved the tasks!\n";
+    }
+}
 
-static void help(){}
+static void help(){
+    clr();
+    cout << "'reg'         Registeration.\n"
+        << "'login'         Login.\n"
+        << "'add'           Add a task.\n"
+        << "'fin'           Finish a task.\n"
+        << "'del'           Delete a task.\n"
+        << "'display'       Display the tasks.\n"
+        << "'save'          Save the tasks in a file named after the date of today.\n"
+        << "'read'          List the tasks file saved and read from them.\n"
+        << "'exit'          Exit the programe.\n";
+}
 
 static void reg(){               
+    clr();
     string registerName, registerPassword;
     ofstream g("users.txt"); 
     cout <<endl <<"New Username: ";
@@ -74,9 +234,12 @@ static void reg(){
     g<< endl; 
     g<<registerPassword;
     g.close(); 
+    clr();
+    cout << "Registered successfully.\n";
 }
 
 static void login(){
+    clr();
     string name, password, inname, inpassword;
     ifstream f("users.txt");
     getline(f, name);
@@ -110,88 +273,67 @@ static void login(){
 
 static void users_auto_save(){}
 
-static void add(){
-    string temp_task;
-    cout << "Add task: ";
-    cin >> temp_task;
-    task.push_back(temp_task);
-    tasks_undone++;
-    cout << endl;
-
-}
-
-static void del(){
-    vector<string>::iterator n;
-    n = task.begin();
-    int temp;
-    cout << "Delete task( 1" << " to " << tasks_undone
-    << " ): ";  
-    cin >> temp;
-    for(int i=0; i < temp; i++)
-    {
-            n++;
-        }
-    task.erase(n-1);
-    tasks_undone--;
-    cout << endl;
-}
-
-static void display(){
-    cout << "Unfinished tasks: \n";
-    for (int i = 0; i < tasks_undone; i++)
-        {
-            cout << i+1 << ". " << task[i] << endl << endl;
-        }
-    cout << "Finished tasks: \n";    
-    for (int i = 0; i < tasks_done; i++)
-        {
-            cout << i+1 << ". " << fitask[i] << endl << endl;
-        }
-}
-
 static void input(string temp){
     if(temp == "add")
         if(IsLogin)
             add();
         else
-            cout << "You haven't login!\n";
-    if(temp == "del")
+            {clr();
+            cout << "You haven't login!\n";}
+    else if(temp == "del")
         if(IsLogin)
             del();
         else
-            cout << "You haven't login!\n";
-    if(temp == "display")
+            {clr();
+            cout << "You haven't login!\n";}
+    else if(temp == "display")
         if(IsLogin)
             display();
         else
-            cout << "You haven't login!\n";
-    if(temp == "fin")
+            {clr();
+            cout << "You haven't login!\n";}
+    else if(temp == "fin")
         if(IsLogin)
             fin();
         else
-            cout << "You haven't login!\n";
-    if(temp == "save")
+            {clr();
+            cout << "You haven't login!\n";}
+    else if(temp == "save")
         if(IsLogin)
             save();
         else
-            cout << "You haven't login!\n";
-    if(temp == "test")
-        IsLogin = true;
-    if(temp == "reg")
+            {clr();
+            cout << "You haven't login!\n";}
+    else if(temp == "read")
         if(IsLogin)
-            cout << "You have logged in!\n";
+            read();
+        else
+            {clr();
+            cout << "You haven't login!\n";}
+    else if(temp == "test")
+        IsLogin = true;
+    else if(temp == "reg")
+        if(IsLogin)
+            {clr();
+            cout << "You have logged in!\n";}
         else
             reg();
-    if(temp == "login")
+    else if(temp == "login")
         if(IsLogin)
-            cout << "You have logged in!\n";
+            {clr();
+            cout << "You have logged in!\n";}
         else
             login();
-    if(temp == "clr")
+    else if(temp == "help")
+        help();
+    else if(temp == "clr")
         system("clear");
+    else
+        cout << "Command " << "'" << temp << "'" << "not found.\n";
 }
 
 int main(){
+    clr();
     cout << "Type 'help' to show the commands!\n";
     while(cin)
         {
@@ -200,6 +342,9 @@ int main(){
             if(temp != "exit")
                 input(temp);
             else
-                return 0;            
+            {
+                clr();
+                return 0;     
+            }       
         }
 }
