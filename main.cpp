@@ -2,18 +2,62 @@
 #include <cstring>
 #include <vector>
 #include <fstream>
+#include <ctime>
 
 using namespace std;
 
 bool IsLogin = false; 
+bool ISReading = false;
 vector<string> task;    //vector stored unfinished tasks
 vector<string> fitask;  //vector stored finished tasks
-int tasks_undone = 0;   
-int tasks_done = 0;
+int tasks_undone = 0;   //for counting how many tasks remained 
+int tasks_done = 0;     //for counting how many tasks done
+string date;
 
-static void fin(){}
+static void fin(){
+    vector<string>::iterator n;
+    n = task.begin();
+    int a = 0;
+    int temp;
+    cout << "Finish task( 1" << " to " << tasks_undone
+    << " ): ";  
+    cin >> temp;
+    for(int i=0; i < temp; i++)
+    {
+        n++;
+        a++;
+    }
+    fitask.push_back(task[a-1]);
+    task.erase(n-1);
+    tasks_undone--;
+    tasks_done++;
+    cout << endl;
+}  
 
-static void save(){}
+static void get_date(){
+    time_t t = time(0); 
+    struct tm * timeStruct = localtime(&t);
+    string year = to_string(timeStruct->tm_year + 1900);
+    string month = to_string(timeStruct->tm_mon + 1);
+    string day = to_string(timeStruct->tm_mday);
+    date = year + "-" + month + "-" + day+".txt";
+}
+
+static void save(){
+    get_date();
+    ofstream g(date); 
+    g << "Uninished tasks: \n"; 
+    for(int i = 0; i < tasks_undone; i++)
+        {
+            g << task[i] <<endl;
+        }
+    g << "Finished tasks: \n"; 
+    for(int i = 0; i < tasks_done; i++)
+        {
+            g << fitask[i] <<endl;
+        }
+    g.close(); 
+}
 
 static void read(){}
 
@@ -27,7 +71,7 @@ static void reg(){
     cout <<"New Password: ";
     cin >> registerPassword;
     g<<registerName; 
-    g<<'\n'; 
+    g<< endl; 
     g<<registerPassword;
     g.close(); 
 }
@@ -66,8 +110,6 @@ static void login(){
 
 static void users_auto_save(){}
 
-//static string get_date(){}
-
 static void add(){
     string temp_task;
     cout << "Add task: ";
@@ -83,7 +125,7 @@ static void del(){
     n = task.begin();
     int temp;
     cout << "Delete task( 1" << " to " << tasks_undone
-    << " )";  
+    << " ): ";  
     cin >> temp;
     for(int i=0; i < temp; i++)
     {
@@ -95,12 +137,12 @@ static void del(){
 }
 
 static void display(){
-    cout << "Tasks(unfinished): \n";
+    cout << "Unfinished tasks: \n";
     for (int i = 0; i < tasks_undone; i++)
         {
             cout << i+1 << ". " << task[i] << endl << endl;
         }
-    cout << "Tasks(finished): \n";    
+    cout << "Finished tasks: \n";    
     for (int i = 0; i < tasks_done; i++)
         {
             cout << i+1 << ". " << fitask[i] << endl << endl;
@@ -120,9 +162,21 @@ static void input(string temp){
             cout << "You haven't login!\n";
     if(temp == "display")
         if(IsLogin)
-            add();
+            display();
         else
             cout << "You haven't login!\n";
+    if(temp == "fin")
+        if(IsLogin)
+            fin();
+        else
+            cout << "You haven't login!\n";
+    if(temp == "save")
+        if(IsLogin)
+            save();
+        else
+            cout << "You haven't login!\n";
+    if(temp == "test")
+        IsLogin = true;
     if(temp == "reg")
         if(IsLogin)
             cout << "You have logged in!\n";
