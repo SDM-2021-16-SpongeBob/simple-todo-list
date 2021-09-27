@@ -132,7 +132,12 @@ One who achieves this alignment earlier is the winner. While the second Player t
 
 Loosing: If your competitor gets the required alignment of symbols first, you lose.
 
-Draw: If all the nine cells of the grip are marked, and none of the players, achieves the required alignment. The condition is a draw or tie. None of the players gets a point in this case. This condition takes place numerous times during the game-play and is actually amusing
+Draw: If all the nine cells of the grip are marked, and none of the players, achieves the required alignment. The condition is a draw or tie. None of the players gets a point in this case. This condition takes place numerous times during the game-play and is actually amusing.
+
+#Events
+It is straightforward to write a computer program to play tic-tac-toe perfectly or to enumerate the 765 essentially different positions (the state space complexity) or the 26,830 possible games up to rotations and reflections (the game tree complexity) on this space.
+
+
 
 
 
