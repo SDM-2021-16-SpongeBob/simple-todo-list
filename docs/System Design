@@ -137,7 +137,7 @@ Draw: If all the nine cells of the grip are marked, and none of the players, ach
 #Events
 It is straightforward to write a computer program to play tic-tac-toe perfectly or to enumerate the 765 essentially different positions (the state space complexity) or the 26,830 possible games up to rotations and reflections (the game tree complexity) on this space.
 
-
+#Data
 
 
 
