@@ -96,6 +96,9 @@ In addition, you also have to configure permissions. Any AWS resources you creat
 Only the resource owner, that is the AWS account that created the Games table, can access this table. 
 Thus, by default your Tic-Tac-Toe application cannot update the Games table.
 
+#Integration
+The "Tic-Tac-Toe" method isn't different from the formula for IBP.
+
 
 
 
