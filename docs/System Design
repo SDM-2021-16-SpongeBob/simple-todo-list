@@ -81,66 +81,65 @@ instance of the GameSinglePlayer Process. The Process implements the logic of th
 the Game Process. From here, a user can continue their games, or start a new one.
 
 #Deployment
-In the preceding sections, you deployed and tested the Tic-Tac-Toe application locally on your computer using DynamoDB Local. Now, you deploy the application in production 
-as follows:
+ In the preceding sections, you deployed and tested the Tic-Tac-Toe application locally on your computer using DynamoDB Local. Now, you deploy the application in production 
+ as follows:
 
-Deploy the application using AWS Elastic Beanstalk, an easy-to-use service for deploying and scaling web applications and services.
-For more information, see Deploying a Flask Application to AWS Elastic Beanstalk.
+ Deploy the application using AWS Elastic Beanstalk, an easy-to-use service for deploying and scaling web applications and services.
 
-Elastic Beanstalk launches one or more Amazon Elastic Compute Cloud (Amazon EC2) instances, which you configure through Elastic Beanstalk, on which 
-your Tic-Tac-Toe application will run.
+ Elastic Beanstalk launches one or more Amazon Elastic Compute Cloud (Amazon EC2) instances, which you configure through Elastic Beanstalk, on which 
+ your Tic-Tac-Toe application will run.
 
-Using the Amazon DynamoDB service, create a Games table that exists on AWS rather than locally on your computer.
+ Using the Amazon DynamoDB service, create a Games table that exists on AWS rather than locally on your computer.
 
-In addition, you also have to configure permissions. Any AWS resources you create, such as the Games table in DynamoDB, are private by default.
-Only the resource owner, that is the AWS account that created the Games table, can access this table. 
-Thus, by default your Tic-Tac-Toe application cannot update the Games table.
+ In addition, you also have to configure permissions. Any AWS resources you create, such as the Games table in DynamoDB, are private by default.
+ Only the resource owner, that is the AWS account that created the Games table, can access this table. 
+ Thus, by default your Tic-Tac-Toe application cannot update the Games table.
 
 #Integration
-The "Tic-Tac-Toe" method isn't different from the formula for IBP. It's just a pictorial representation of the formula (think of using the tic tac toe as expanding a matrix). 
-The "formula" by itself isn't a function in which you plug in a function and get its primitive as the output. 
+ The "Tic-Tac-Toe" method isn't different from the formula for IBP. It's just a pictorial representation of the formula (think of using the tic tac toe as expanding a matrix). 
+ The "formula" by itself isn't a function in which you plug in a function and get its primitive as the output. 
 
-It just helps in re-expressing the integral in front of you in a different way which hopefully might be easier to solve.
+ It just helps in re-expressing the integral in front of you in a different way which hopefully might be easier to solve.
 
-Infact -- if you already didn't know it -- the IBP formula is just the product rule of differentiation rearranged.
+ Infact -- if you already didn't know it -- the IBP formula is just the product rule of differentiation rearranged.
 
-Recently, Lima lamented on the "time consuming and tiresome" pedagogical nature of repeated integration by parts, throwing down the challenge of providing a pen-and-pencil solution to a related problem in a few seconds.
+ Recently, Lima lamented on the "time consuming and tiresome" pedagogical nature of repeated integration by parts, throwing down the challenge of providing a pen-and-pencil solution to a related problem in a few seconds.
 
-Lima put forth a simple formula as an alternative. In this work, I offer a response to Lima's challenge and his formula. 
-Drawing on the concepts of deconstruction and problematization, I offer alternative pedagogical perspectives regarding repeated integration by parts that involves tabular integration (aka Tic-Tac-Toe). 
+ Lima put forth a simple formula as an alternative. In this work, I offer a response to Lima's challenge and his formula. 
+ Drawing on the concepts of deconstruction and problematization, I offer alternative pedagogical perspectives regarding repeated integration by parts that involves tabular integration (aka Tic-Tac-Toe). 
 
-I also explore the case of Lima's formula when an exponent in the integral is purely imaginary and compare this approach with repeated integration by parts. 
+ I also explore the case of Lima's formula when an exponent in the integral is purely imaginary and compare this approach with repeated integration by parts. 
 
-This paper forms alternative pedagogical constructs for students and educators to work with in the space of repeated integration by parts.
+ This paper forms alternative pedagogical constructs for students and educators to work with in the space of repeated integration by parts.
 
 #Services and Components
-The Application component starts, instantiates the other components, wires them together, starts the game and waits for it to get over.
+ The Application component starts, instantiates the other components, wires them together, starts the game and waits for it to get over.
 
-The Game component orchestrates interactions between the players and the board, determines when players can make moves and if their moves are valid and if the game is over because a player has won or because the game is drawn. It communicates with the UserInterface component to display the state of the game. It may also keep various statistics about games played.
+ The Game component orchestrates interactions between the players and the board, determines when players can make moves and if their moves are valid and if the game is over because a player has won or because the game is drawn. It communicates with the UserInterface component to display the state of the game. It may also keep various statistics about games played.
 
-The Player component represents a player in the game. A player may be Human, in which case the component is a proxy for the actual human player, and uses the UserInterface component to get the players move in the game.
+ The Player component represents a player in the game. A player may be Human, in which case the component is a proxy for the actual human player, and uses the UserInterface component to get the players move in the game.
 
-The player may also be the computer. In this case we will be implementing two types of Computer player. 
-The Perfect Player is an algorithm that plays a perfect game of Tic-tac-toe. It can never lose. For Tic-tac-toe, such an algorithm is easy to implement. 
-The Self-Learning Player is a machine learning algorithm that learns how to play the game over a series of games. Indeed, one way of training the self-learning player is to have it play repeatedly against the perfect player.
+ The player may also be the computer. In this case we will be implementing two types of Computer player. 
+ The Perfect Player is an algorithm that plays a perfect game of Tic-tac-toe. It can never lose. For Tic-tac-toe, such an algorithm is easy to implement. 
+ The Self-Learning Player is a machine learning algorithm that learns how to play the game over a series of games. Indeed, one way of training the self-learning player is to have it play repeatedly against the perfect player.
 
-The UserInterface component provides an API that the Game component can use to display the state of the game and get input on user preferences etc. It is also used by the Human Player proxy, to get moves from a human player.
+ The UserInterface component provides an API that the Game component can use to display the state of the game and get input on user preferences etc. It is also used by the Human Player proxy, to get moves from a human player.
 
 #Applications
-Winning: Each of the players tries to place three of their symbols in three adjacent horizontal, vertical, or diagonal cells. 
-One who achieves this alignment earlier is the winner. While the second Player tries to interrupt Player 1’s alignment by placing his own symbols in between the symbols of Player 1.
+ Winning: Each of the players tries to place three of their symbols in three adjacent horizontal, vertical, or diagonal cells. 
+ One who achieves this alignment earlier is the winner. While the second Player tries to interrupt Player 1’s alignment by placing his own symbols in between the symbols of Player 1.
 
-Loosing: If your competitor gets the required alignment of symbols first, you lose.
+ Loosing: If your competitor gets the required alignment of symbols first, you lose.
 
-Draw: If all the nine cells of the grip are marked, and none of the players, achieves the required alignment. The condition is a draw or tie. None of the players gets a point in this case. This condition takes place numerous times during the game-play and is actually amusing.
+ Draw: If all the nine cells of the grip are marked, and none of the players, achieves the required alignment. The condition is a draw or tie. None of the players gets a point in this case. This condition takes place numerous times during the game-play and is actually amusing.
 
 #Events
-It is straightforward to write a computer program to play tic-tac-toe perfectly or to enumerate the 765 essentially different positions (the state space complexity) or the 26,830 possible games up to rotations and reflections (the game tree complexity) on this space.
+ It is straightforward to write a computer program to play tic-tac-toe perfectly or to enumerate the 765 essentially different positions (the state space complexity) or the 26,830 possible games up to rotations and reflections (the game tree complexity) on this space.
 
 #Data
-It starts with 2 completely random Tic-tac-toe move generators playing each other. After a game is finished, one of the machines takes all of the decision data that it collected from the game, and puts it in it’s database. If that move resulted in a win, that move gains 3 points. If the move resulted in a loss, it loses 1 point. A tie game results in plus 1 point. Over a period of 100,000 games, each unique scenario is documented in it’s database, along with the moves it chose after that. Moves with higher scores for that scenario are more likely to be picked in the next game, while moves with lower scores are more unlikely.
+ It starts with 2 completely random Tic-tac-toe move generators playing each other. After a game is finished, one of the machines takes all of the decision data that it collected from the game, and puts it in it’s database. If that move resulted in a win, that move gains 3 points. If the move resulted in a loss, it loses 1 point. A tie game results in plus 1 point. Over a period of 100,000 games, each unique scenario is documented in it’s database, along with the moves it chose after that. Moves with higher scores for that scenario are more likely to be picked in the next game, while moves with lower scores are more unlikely.
 
-The idea is that over the course of several thousand games, moves that resulted in wins or ties gain more points, and are more likely to be picked. What resulted was a database of over 2,000 unique game scenarios, with different weights for each move. Below is a plot of the total amount of unique scenarios in the database over the course of the 100,000 games.
+ The idea is that over the course of several thousand games, moves that resulted in wins or ties gain more points, and are more likely to be picked. What resulted was a database of over 2,000 unique game scenarios, with different weights for each move. Below is a plot of the total amount of unique scenarios in the database over the course of the 100,000 games.a
 
 
 
