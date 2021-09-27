@@ -97,7 +97,9 @@ Only the resource owner, that is the AWS account that created the Games table, c
 Thus, by default your Tic-Tac-Toe application cannot update the Games table.
 
 #Integration
-The "Tic-Tac-Toe" method isn't different from the formula for IBP.
+The "Tic-Tac-Toe" method isn't different from the formula for IBP. It's just a pictorial representation of the formula (think of using the tic tac toe as expanding a matrix). 
+The "formula" by itself isn't a function in which you plug in a function and get its primitive as the output. 
+It just helps in re-expressing the integral in front of you in a different way which hopefully might be easier to solve.
 
 
 
