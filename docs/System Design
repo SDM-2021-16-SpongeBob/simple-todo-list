@@ -126,7 +126,7 @@ The Self-Learning Player is a machine learning algorithm that learns how to play
 
 The UserInterface component provides an API that the Game component can use to display the state of the game and get input on user preferences etc. It is also used by the Human Player proxy, to get moves from a human player.
 
-
+#Applications
 
 
 
