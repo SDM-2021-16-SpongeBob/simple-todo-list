@@ -114,7 +114,11 @@ I also explore the case of Lima's formula when an exponent in the integral is pu
 This paper forms alternative pedagogical constructs for students and educators to work with in the space of repeated integration by parts.
 
 #Services and Components
+The Application component starts, instantiates the other components, wires them together, starts the game and waits for it to get over.
 
+The Game component orchestrates interactions between the players and the board, determines when players can make moves and if their moves are valid and if the game is over because a player has won or because the game is drawn. 
+
+It communicates with the UserInterface component to display the state of the game. It may also keep various statistics about games played.
 
 
 
