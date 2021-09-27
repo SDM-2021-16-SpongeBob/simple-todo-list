@@ -140,6 +140,8 @@ It is straightforward to write a computer program to play tic-tac-toe perfectly 
 #Data
 It starts with 2 completely random Tic-tac-toe move generators playing each other. After a game is finished, one of the machines takes all of the decision data that it collected from the game, and puts it in it’s database. If that move resulted in a win, that move gains 3 points. If the move resulted in a loss, it loses 1 point. A tie game results in plus 1 point. Over a period of 100,000 games, each unique scenario is documented in it’s database, along with the moves it chose after that. Moves with higher scores for that scenario are more likely to be picked in the next game, while moves with lower scores are more unlikely.
 
+The idea is that over the course of several thousand games, moves that resulted in wins or ties gain more points, and are more likely to be picked. What resulted was a database of over 2,000 unique game scenarios, with different weights for each move. Below is a plot of the total amount of unique scenarios in the database over the course of the 100,000 games.
+
 
 
 
