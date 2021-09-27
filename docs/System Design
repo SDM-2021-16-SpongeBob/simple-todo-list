@@ -116,15 +116,15 @@ This paper forms alternative pedagogical constructs for students and educators t
 #Services and Components
 The Application component starts, instantiates the other components, wires them together, starts the game and waits for it to get over.
 
-The Game component orchestrates interactions between the players and the board, determines when players can make moves and if their moves are valid and if the game is over because a player has won or because the game is drawn. 
-
-It communicates with the UserInterface component to display the state of the game. It may also keep various statistics about games played.
+The Game component orchestrates interactions between the players and the board, determines when players can make moves and if their moves are valid and if the game is over because a player has won or because the game is drawn. It communicates with the UserInterface component to display the state of the game. It may also keep various statistics about games played.
 
 The Player component represents a player in the game. A player may be Human, in which case the component is a proxy for the actual human player, and uses the UserInterface component to get the players move in the game.
 
 The player may also be the computer. In this case we will be implementing two types of Computer player. 
 The Perfect Player is an algorithm that plays a perfect game of Tic-tac-toe. It can never lose. For Tic-tac-toe, such an algorithm is easy to implement. 
 The Self-Learning Player is a machine learning algorithm that learns how to play the game over a series of games. Indeed, one way of training the self-learning player is to have it play repeatedly against the perfect player.
+
+The UserInterface component provides an API that the Game component can use to display the state of the game and get input on user preferences etc. It is also used by the Human Player proxy, to get moves from a human player.
 
 
 
