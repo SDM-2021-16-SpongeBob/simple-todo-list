@@ -99,7 +99,22 @@ Thus, by default your Tic-Tac-Toe application cannot update the Games table.
 #Integration
 The "Tic-Tac-Toe" method isn't different from the formula for IBP. It's just a pictorial representation of the formula (think of using the tic tac toe as expanding a matrix). 
 The "formula" by itself isn't a function in which you plug in a function and get its primitive as the output. 
+
 It just helps in re-expressing the integral in front of you in a different way which hopefully might be easier to solve.
+
+Infact -- if you already didn't know it -- the IBP formula is just the product rule of differentiation rearranged.
+
+Recently, Lima lamented on the "time consuming and tiresome" pedagogical nature of repeated integration by parts, throwing down the challenge of providing a pen-and-pencil solution to a related problem in a few seconds.
+
+Lima put forth a simple formula as an alternative. In this work, I offer a response to Lima's challenge and his formula. 
+Drawing on the concepts of deconstruction and problematization, I offer alternative pedagogical perspectives regarding repeated integration by parts that involves tabular integration (aka Tic-Tac-Toe). 
+
+I also explore the case of Lima's formula when an exponent in the integral is purely imaginary and compare this approach with repeated integration by parts. 
+
+This paper forms alternative pedagogical constructs for students and educators to work with in the space of repeated integration by parts.
+
+#Services and Components
+
 
 
 
