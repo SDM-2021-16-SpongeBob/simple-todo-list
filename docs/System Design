@@ -120,6 +120,8 @@ The Game component orchestrates interactions between the players and the board, 
 
 It communicates with the UserInterface component to display the state of the game. It may also keep various statistics about games played.
 
+The Player component represents a player in the game. A player may be Human, in which case the component is a proxy for the actual human player, and uses the UserInterface component to get the players move in the game.
+
 
 
 
