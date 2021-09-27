@@ -122,6 +122,10 @@ It communicates with the UserInterface component to display the state of the gam
 
 The Player component represents a player in the game. A player may be Human, in which case the component is a proxy for the actual human player, and uses the UserInterface component to get the players move in the game.
 
+The player may also be the computer. In this case we will be implementing two types of Computer player. 
+The Perfect Player is an algorithm that plays a perfect game of Tic-tac-toe. It can never lose. For Tic-tac-toe, such an algorithm is easy to implement. 
+The Self-Learning Player is a machine learning algorithm that learns how to play the game over a series of games. Indeed, one way of training the self-learning player is to have it play repeatedly against the perfect player.
+
 
 
 
