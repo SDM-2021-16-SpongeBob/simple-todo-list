@@ -80,6 +80,23 @@ instance of the GameSinglePlayer Process. The Process implements the logic of th
   .The landing page, or the Game Management Single Player Screen, is a standalone Screen listing all the running instances of
 the Game Process. From here, a user can continue their games, or start a new one.
 
+#Deployment
+In the preceding sections, you deployed and tested the Tic-Tac-Toe application locally on your computer using DynamoDB Local. Now, you deploy the application in production 
+as follows:
+
+Deploy the application using AWS Elastic Beanstalk, an easy-to-use service for deploying and scaling web applications and services.
+For more information, see Deploying a Flask Application to AWS Elastic Beanstalk.
+
+Elastic Beanstalk launches one or more Amazon Elastic Compute Cloud (Amazon EC2) instances, which you configure through Elastic Beanstalk, on which 
+your Tic-Tac-Toe application will run.
+
+Using the Amazon DynamoDB service, create a Games table that exists on AWS rather than locally on your computer.
+
+In addition, you also have to configure permissions. Any AWS resources you create, such as the Games table in DynamoDB, are private by default.
+Only the resource owner, that is the AWS account that created the Games table, can access this table. 
+Thus, by default your Tic-Tac-Toe application cannot update the Games table.
+
+
 
 
 
