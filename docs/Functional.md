@@ -14,7 +14,7 @@ A one-stop solution for managing the important things, the things that need to b
 
 The software should have the following functions:
 
-- Add To-Do task (MVP)
+- Add To-Do task  (MVP)
 - Delete To-Do task (MVP)
 - Finish To-Do task (MVP)
 - Show the existing To-Do task (MVP)
