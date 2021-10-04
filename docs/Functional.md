@@ -18,7 +18,7 @@ The software should have the following functions:
 - Delete To-Do task (MVP)
 - Finish To-Do task  (MVP)
 - Show the existing To-Do task (MVP)
-- Provide help documentation (MVP)
+- Provide help documentation  (MVP)
 - Users register, login, log off
 - Save the tasks in different txt files
 - Countdown
