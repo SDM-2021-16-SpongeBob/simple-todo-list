@@ -4,7 +4,7 @@
 
 For contemporary college students, how to plan time is an important thing, and it is a good habit to use To-Do List to manage important things, things that need to be done, and things that have already been done.
 
-We plan to write a software to manage the To-Do List.
+We plan to write a software to manage the To-Do List!
 
 We plan to develop the software step by step. We will provide a minimum viable product (MVP) first, and then we will add functions to the MVP and improve the user experience.
 
