@@ -17,6 +17,7 @@ string date;
 
 static void clr(){
 
+   
     #ifdef linux
     system("clear");
     #endif
