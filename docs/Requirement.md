@@ -83,7 +83,6 @@ The users' privacy should be protected by login system
 
 ## Dictionary
 
-
 - Name of the data item
 - Aliases
 - Description/purpose
