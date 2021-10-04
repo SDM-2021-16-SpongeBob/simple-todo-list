@@ -4,6 +4,7 @@
 
 Tic-tac-toe (or Noughts and crosses, Xs and Os) is a paper-and-pencil game for two players, X and O, who take turns marking the spaces in a 3×3 grid. The player who succeeds in placing three respective marks in a horizontal, vertical, or diagonal row wins the game.The game is to be played between the computer and a human opponent. Either of the two can start first.
 
+There are two things to implement for creating the game: the game logic and the game user interface.
 
 There are various possibilities for creating the UI on Windows, including Win32 API, MFC, ATL, GDI+, DirectX, etc. In this article, I will show how we can use the same game logic implementation to build applications using various technologies. We will create two applications, one with Win32 API and one with C++/CX for the Windows Runtime.
 
