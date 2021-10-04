@@ -79,7 +79,7 @@ The users' privacy should be protected by login system
 - Implementation/Coding.
 - Testing.
 - Deployment.
-- Maintenance.
+
 
 ## Dictionary
 
