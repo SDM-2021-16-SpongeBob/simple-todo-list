@@ -129,7 +129,8 @@ static void save(){
     g << "Finished tasks\n"; 
     for(int i = 0; i < tasks_done; i++)
         {
-            g << fitask[i] << endl;
+            
+        g << fitask[i] << endl;
         }
     g.close(); 
     ofstream write;
