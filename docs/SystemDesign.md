@@ -9,6 +9,8 @@ There are two things to implement for creating the game: the game logic and the 
 
 There are various possibilities for creating the UI on Windows, including Win32 API, MFC, ATL, GDI+, DirectX, etc. In this article, I will show how we can use the same game logic implementation to build applications using various technologies. We will create two applications, one with Win32 API and one with C++/CX for the Windows Runtime.
 
+
+
 ## PROCESSES
 
 1. Draw the board
