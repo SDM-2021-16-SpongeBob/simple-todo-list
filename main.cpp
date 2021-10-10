@@ -6,7 +6,7 @@
 
 using namespace std;
 
-bool IsLogin = ture; 
+bool IsLogin = false; 
 bool ISReading = false;
 string user_name;
 vector<string> task;    //vector stored unfinished tasks
