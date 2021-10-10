@@ -25,11 +25,9 @@ There are various possibilities for creating the UI on Windows, including Win32 
 
    After the first player goes, then the second player should put down his symbol, which will be different from the symbol of the first player. The second player can either try to block the first player from creating a row of three, or focus on creating his or her own row of three. Ideally, the player can do both.
 
-
 4. Keep alternating moves until one of the players has drawn a row of three symbols or until no one can win.
 
    The first player to draw three of his or her symbols in a row, whether it is horizontal, vertical, or diagonal, has won tic-tac-toe. However, if both players are playing with optimal strategy, then there's a good chance that no one will win because you will have blocked all of each other's opportunities to create a row of three.  
-
 
 5. Keep practicing
 
