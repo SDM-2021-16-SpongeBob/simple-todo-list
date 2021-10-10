@@ -9,7 +9,27 @@ There are two things to implement for creating the game: the game logic and the 
 
 There are various possibilities for creating the UI on Windows, including Win32 API, MFC, ATL, GDI+, DirectX, etc. In this article, I will show how we can use the same game logic implementation to build applications using various technologies. We will create two applications, one with Win32 API and one with C++/CX for the Windows Runtime.
 
+## PROCESSES
 
+1. Draw the board
+
+   First, you have to draw the board, which is made up of a 3 x 3 grid of squares. This means it has three rows of three squares. Some people play with a 4 x 4 grid, but that is for more advanced players, and we will focus on the 3 x 3 grid here.
+
+2. Have the first player go  first
+
+   Though traditionally, the first player goes with "X", you can allow the first player to decide whether he wants to go with "X"s or "O"s. These symbols will be placed on the table, in the attempt to have three of them in a row. If you're going first, then the best move you can make is to move into the center. This will maximize your chances of winning, since you'll be able to create a row of three "X"s or "O"s in more combinations (4) this way than if you chose a different square.
+
+3. Have the second player go second
+
+   After the first player goes, then the second player should put down his symbol, which will be different from the symbol of the first player. The second player can either try to block the first player from creating a row of three, or focus on creating his or her own row of three. Ideally, the player can do both.
+
+4. Keep alternating moves until one of the players has drawn a row of three symbols or until no one can win.
+
+   The first player to draw three of his or her symbols in a row, whether it is horizontal, vertical, or diagonal, has won tic-tac-toe. However, if both players are playing with optimal strategy, then there's a good chance that no one will win because you will have blocked all of each other's opportunities to create a row of three.  
+
+5. Keep practicing
+
+   Contrary to popular belief, tic-tac-toe isn't purely a game of chance. There are some strategies that can help you optimize your skills and to become an expert tic-tac-toe player. If you keep playing, you'll soon learn all of the tricks to making sure you win every time -- or, at least, you'll learn the tricks to make sure you never lose. Its like 0's and x's.
 
 
 ## TECHNOLOGY
